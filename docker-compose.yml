@@ -13,10 +13,11 @@ services:
       SERVER_COUNTRIES: ${PROTONVPN_SERVER_COUNTRIES}
       HTTP_CONTROL_SERVER_ADDRESS: ":8000"
       DOT: "on"
-      # Uncomment and adjust if the app needs to reach local network resources:
+      # Uncomment to allow reaching local network resources while tunneled:
       # FIREWALL_OUTBOUND_SUBNETS: 192.168.0.0/16,172.16.0.0/12
     ports: []
-      # Declare any ports your app needs here, e.g.:
+      # When another service uses network_mode: "service:vpn", declare its
+      # ports here instead:
       # - "8080:8080"
     healthcheck:
       test: ["CMD", "wget", "-qO-", "http://localhost:8000/v1/vpn/status"]
@@ -24,13 +25,4 @@ services:
       timeout: 5s
       retries: 5
       start_period: 30s
-    restart: unless-stopped
-
-  app:
-    build: ./app
-    container_name: vpn-app
-    network_mode: "service:vpn"
-    depends_on:
-      vpn:
-        condition: service_healthy
     restart: unless-stopped
