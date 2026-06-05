@@ -15,7 +15,7 @@ services:
       DOT: "on"
       # Uncomment and adjust if the app needs to reach local network resources:
       # FIREWALL_OUTBOUND_SUBNETS: 192.168.0.0/16,172.16.0.0/12
-    ports:
+    ports: []
       # Declare any ports your app needs here, e.g.:
       # - "8080:8080"
     healthcheck:

@@ -7,5 +7,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY main.py verify_vpn.py ./
 
-# Optional: run VPN verification on startup, then launch the app
-# CMD ["sh", "-c", "python verify_vpn.py && python main.py"]
+# Verify VPN then start the app
+CMD ["sh", "-c", "python verify_vpn.py && python main.py"]
